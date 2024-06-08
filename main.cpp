@@ -3,38 +3,24 @@
 #include <QList>
 #include <QQmlContext>
 #include "ZTwoDimension.h"
+#include "Demo.h"
 
-class Demo
-{
-public:
-	enum class ClientRole
-	{
-		Role1,
-		Role2,
-	};
 
-	QVariant getSys(int role)
-	{
-		return "name";
-	}
-	QVariant getUser(ClientRole role)
-	{
-		return "age";
-	}
-};
 
-//using TypeDemo = ZTwoDimension<Demo>;
+using TypeDemo = ZTwoDimension<Demo>;
+
+Q_DECLARE_METATYPE(ZTwoDimension<Demo>);
 
 int main(int argc, char* argv[])
 {
 
-	//qRegisterMetaType<ZTwoDimension<Demo>>("TypeDemo");
+	qRegisterMetaType<ZTwoDimension<Demo>>("Demo");
 
 	QGuiApplication app(argc, argv);
 
 	QQmlApplicationEngine engine;
 
-	//auto pdemo = new TypeDemo({}, &app);
+
 	//engine.rootContext()->setContextProperty("abc", pdemo);
 	QObject::connect(
 		&engine,

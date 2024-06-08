@@ -15,7 +15,7 @@ template<typename RowItem>
 class ZTwoDimension : public QAbstractListModel
 {
 	Q_OBJECT
-		//QML_ELEMENT
+		QML_ELEMENT
 public:
 	using ClientRole = typename RowItem::ClientRole;
 	static_assert(std::is_enum_v<typename RowItem::ClientRole>);
