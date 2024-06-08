@@ -16,5 +16,5 @@ public:
 	QVariant getUser(ClientRole role);
 
 	QString _name{ "name" };
-	QString _iconUrl;
+	QString _iconUrl{ "qrc:/demo.svg" };
 };
