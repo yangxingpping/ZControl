@@ -1,8 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "zroundbuttonitem.h"
 #include <QList>
 #include <QQmlContext>
+#include "zroundbuttonitem.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("untitled100", "Main");
+    engine.loadFromModule("zControl", "Main");
 
     return app.exec();
 }

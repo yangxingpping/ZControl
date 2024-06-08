@@ -1,4 +1,7 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.27)
+
+set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+  CACHE STRING "Vcpkg toolchain file")
 
 project(zControl VERSION 0.1 LANGUAGES CXX)
 
@@ -19,7 +22,7 @@ qt_add_qml_module(appzControl
     QML_FILES ZButton.qml
     QML_FILES ZRowButton.qml
     QML_FILES ZColumnButton.qml
-    SOURCES zroundbuttonitem.h zroundbuttonitem.cpp
+    #SOURCES zroundbuttonitem.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
