@@ -16,8 +16,8 @@ int main(int argc, char* argv[])
 	QQmlApplicationEngine engine;
 
 	auto pdemo = new ZTwoDimensionImpl<Demo>({}, &app);
-	pdemo->_data.insert({ 0, std::make_unique<Demo>() });
-	pdemo->_data.insert({ 1, std::make_unique<Demo>() });
+	pdemo->_data.push_back(std::make_unique<Demo>());
+	pdemo->_data.push_back(std::make_unique<Demo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
 	QObject::connect(
 		&engine,

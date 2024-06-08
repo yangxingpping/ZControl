@@ -32,16 +32,16 @@ public:
 	{}
 	virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const
 	{
-		auto it = _data.find(index.row());
-		if (it == _data.end())
+		if (_data.size() <= index.row())
 		{
+			assert(0);
 			return QVariant();
 		}
 		if (role >= Qt::UserRole)
 		{
 			auto opte = magic_enum::enum_cast<ClientRole>(role - Qt::UserRole);
 			assert(opte.has_value());
-			return it->second->getUser(opte.value());
+			return _data[index.row()]->getUser(opte.value());
 		}
 		return QVariant();
 	}
@@ -52,5 +52,5 @@ public:
 Q_SIGNALS:
 
 public:
-	map<int, unique_ptr<ValueType>> _data;
+	vector<unique_ptr<ValueType>> _data;
 };
