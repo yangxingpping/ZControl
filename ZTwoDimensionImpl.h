@@ -25,7 +25,7 @@ public:
 		constexpr auto entries = magic_enum::enum_entries<ClientRole>();
 		for (auto&& kv : entries)
 		{
-			_roles.insert(magic_enum::enum_integer(kv.first), QByteArrayLiteral(kv.second.data()));
+			_roles.insert(magic_enum::enum_integer(kv.first) + Qt::UserRole, QByteArrayLiteral(kv.second.data()));
 		}
 	}
 	virtual ~ZTwoDimensionImpl() override
@@ -37,9 +37,13 @@ public:
 		{
 			return QVariant();
 		}
-		auto opte = magic_enum::enum_cast<ClientRole>(role);
-		assert(opte.has_value());
-		return it->second->getUser(opte.value());
+		if (role >= Qt::UserRole)
+		{
+			auto opte = magic_enum::enum_cast<ClientRole>(role - Qt::UserRole);
+			assert(opte.has_value());
+			return it->second->getUser(opte.value());
+		}
+		return QVariant();
 	}
 	virtual int zrowCount(const QModelIndex& index = QModelIndex()) const
 	{

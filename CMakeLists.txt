@@ -26,7 +26,6 @@ qt_add_qml_module(appzControl
     QML_FILES ZButton.qml
     QML_FILES ZRowButton.qml
     QML_FILES ZColumnButton.qml
-    #SOURCES ZTwoDimension.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -50,3 +49,5 @@ install(TARGETS appzControl
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+set_target_properties(appzControl PROPERTIES VS_GLOBAL_VcpkgEnabled true)
