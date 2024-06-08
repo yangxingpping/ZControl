@@ -7,24 +7,31 @@
 
 using std::map;
 using std::unique_ptr;
-class ButtonDetail;
+
+template<typename RowItem, enum class Roles>
 class ZRoundButtonItem : public QAbstractListModel
 {
     Q_OBJECT
     QML_ELEMENT
 public:
-    explicit ZRoundButtonItem(QObject *parent = nullptr);
-    ~ZRoundButtonItem() override;
-    enum Roles 
+    explicit ZRoundButtonItem(QObject *parent = nullptr)
+        :QAbstractListModel(parent)
     {
-        DisplayRole = Qt::DisplayRole,
-        IconRole,
-    };
-    int rowCount(const QModelIndex &index = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    QHash<int, QByteArray> roleNames() const override;
+    }
+    virtual ~ZRoundButtonItem() override
+    {
+    }
+    int rowCount(const QModelIndex &index = QModelIndex()) const override
+    {
+    }
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override
+    {
+    }
+    QHash<int, QByteArray> roleNames() const override
+    {
+    }
 Q_SIGNALS:
 
-private:
-    map<int, unique_ptr<ButtonDetail>> _d;
+public:
+    map<int, unique_ptr<RowItem>> _d;
 };
