@@ -18,7 +18,7 @@ Window {
         ZColumnButton{
             btnWidth: 100
             btnHeigth: 64
-            buttons: ["first", "second", "third"]
+            buttons: abc //["first", "second", "third"]
             anchors.fill: parent
 
         }

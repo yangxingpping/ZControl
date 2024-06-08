@@ -2,17 +2,19 @@
 #pragma once
 
 #include <QVariant>
-#include <QObject>
 
 class Demo
 {
 public:
 	enum class ClientRole
 	{
-		Role1,
-		Role2,
+		name,
+		iconUrl,
 	};
-
-	QVariant getSys(int role);
+	Demo();
+	~Demo();
 	QVariant getUser(ClientRole role);
+
+	QString _name{ "name" };
+	QString _iconUrl;
 };

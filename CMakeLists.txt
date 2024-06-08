@@ -14,7 +14,9 @@ qt_standard_project_setup(REQUIRES 6.5)
 qt_add_executable(appzControl
     main.cpp
     Demo.cpp
+    Demo.h
     ZTwoDimension.h
+    ZTwoDimension.cpp
 )
 
 qt_add_qml_module(appzControl
@@ -24,7 +26,7 @@ qt_add_qml_module(appzControl
     QML_FILES ZButton.qml
     QML_FILES ZRowButton.qml
     QML_FILES ZColumnButton.qml
-    SOURCES ZTwoDimension.h
+    #SOURCES ZTwoDimension.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
