@@ -13,28 +13,40 @@ using std::map;
 using std::unique_ptr;
 using std::vector;
 
-template<typename ValueType>
+template<class ValueType>
 class ZTwoDimensionImpl : public ZTwoDimension
 {
 public:
+	using ClientRole = typename ValueType::ClientRole;
+	static_assert(std::is_enum_v<ClientRole>);
 	explicit ZTwoDimensionImpl(map<int, QByteArray> sysRoles, QObject* parent = nullptr)
 		: ZTwoDimension(sysRoles, parent)
 	{
-
+		constexpr auto entries = magic_enum::enum_entries<ClientRole>();
+		for (auto&& kv : entries)
+		{
+			_roles.insert(magic_enum::enum_integer(kv.first), QByteArrayLiteral(kv.second.data()));
+		}
 	}
 	virtual ~ZTwoDimensionImpl() override
 	{}
 	virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const
 	{
-		return QVariant();
+		auto it = _data.find(index.row());
+		if (it == _data.end())
+		{
+			return QVariant();
+		}
+		auto opte = magic_enum::enum_cast<ClientRole>(role);
+		assert(opte.has_value());
+		return it->second->getUser(opte.value());
 	}
 	virtual int zrowCount(const QModelIndex& index = QModelIndex()) const
 	{
-		return 1;
+		return _data.size();
 	}
 Q_SIGNALS:
 
 public:
-	//std::map<int, std::shared_ptr<ValueType> _d;
-	QHash<int, QByteArray> _roles;
+	map<int, unique_ptr<ValueType>> _data;
 };

@@ -15,7 +15,7 @@ Column{
             radius: r.btnRadius
             width: r.btnWidth
             height: r.btnHeigth
-            text: modelData
+            text: name
         }
     }
 }
