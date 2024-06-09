@@ -12,6 +12,7 @@ Column{
     Repeater{
         model: r.buttons
         ZButton{
+            palette.buttonText: "red "
             radius: r.btnRadius
             width: r.btnWidth
             height: r.btnHeigth

@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
+import QtQuick.Controls.impl
 
 RoundButton {
     id: control
@@ -13,29 +14,21 @@ RoundButton {
     property string iconurl: ""
     property color textColor: "#375278"
     property color normalBkColor: "#ffffff"
-    contentItem: Rectangle {
-        color: "transparent"
-        Text{
-            anchors.centerIn: parent
-            text: control.text
-            font: control.font
-            opacity: enabled ? 1.0 : 0.3
-            color: textColor
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-        }
+    contentItem: IconLabel {
+        spacing: control.spacing
+        mirrored: control.mirrored
+        display: control.display
+
+        icon: control.icon
+        text: control.text
+
+        font: control.font
+        color: control.checked || control.highlighted ? control.palette.brightText :
+               control.flat && !control.down ? (control.visualFocus ? control.palette.highlight : control.palette.windowText) : control.palette.buttonText
     }
 
     background: Rectangle {
         anchors.fill: parent
-        Image{
-            anchors.fill: parent
-            visible: control.iconurl.length > 0;
-            source: control.iconurl;
-            sourceSize.width: 500
-            sourceSize.height: 500
-        }
 
         radius: 6
         color: control.highlighted ? control.Material.listHighlightColor : (checked ? "yellow" : control.normalBkColor)
