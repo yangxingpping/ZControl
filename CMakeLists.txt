@@ -11,10 +11,13 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
+qt6_add_resources(Z_RESOURCES_TARGET demo.qrc)
+
 qt_add_executable(appzControl
     main.cpp
     Demo.cpp
     Demo.h
+    ${Z_RESOURCES_TARGET}
 )
 
 qt_add_qml_module(appzControl

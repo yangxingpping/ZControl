@@ -30,8 +30,11 @@ RoundButton {
     background: Rectangle {
         anchors.fill: parent
         Image{
+            anchors.fill: parent
             visible: control.iconurl.length > 0;
             source: control.iconurl;
+            sourceSize.width: 500
+            sourceSize.height: 500
         }
 
         radius: 6
