@@ -10,20 +10,30 @@ RoundButton {
     width : 74
     anchors.horizontalCenter: Text.horizontalCenter
     text: "hello"
+    property string iconurl: ""
     property color textColor: "#375278"
     property color normalBkColor: "#ffffff"
-    contentItem: Text {
-        text: control.text
-        font: control.font
-        opacity: enabled ? 1.0 : 0.3
-        color: textColor
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        elide: Text.ElideRight
+    contentItem: Rectangle {
+        color: "transparent"
+        Text{
+            anchors.centerIn: parent
+            text: control.text
+            font: control.font
+            opacity: enabled ? 1.0 : 0.3
+            color: textColor
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+        }
     }
 
     background: Rectangle {
         anchors.fill: parent
+        Image{
+            visible: control.iconurl.length > 0;
+            source: control.iconurl;
+        }
+
         radius: 6
         color: control.highlighted ? control.Material.listHighlightColor : (checked ? "yellow" : control.normalBkColor)
         Ripple {

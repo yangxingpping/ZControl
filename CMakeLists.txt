@@ -26,6 +26,7 @@ qt_add_qml_module(appzControl
     QML_FILES ZButton.qml
     QML_FILES ZRowButton.qml
     QML_FILES ZColumnButton.qml
+    SOURCES ZTwoDimension.h
     RESOURCES demo.qrc
 )
 

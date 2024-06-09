@@ -16,6 +16,7 @@ Column{
             width: r.btnWidth
             height: r.btnHeigth
             text: name
+            iconurl: iconUrl
         }
     }
 }

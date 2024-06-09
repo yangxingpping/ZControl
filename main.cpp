@@ -9,7 +9,7 @@
 
 int main(int argc, char* argv[])
 {
-
+	//qRegisterMetaType<ZTwoDimension>("ZTwoDimension");
 
 	QGuiApplication app(argc, argv);
 
