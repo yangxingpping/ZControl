@@ -20,7 +20,7 @@ public:
 	using ClientRole = typename ValueType::ClientRole;
 	static_assert(std::is_enum_v<ClientRole>);
 	explicit ZTwoDimensionImpl(map<int, QByteArray> sysRoles, QObject* parent = nullptr)
-		: ZTwoDimension(sysRoles, parent)
+        : ZTwoDimension(parent)
 	{
 		constexpr auto entries = magic_enum::enum_entries<ClientRole>();
 		for (auto&& kv : entries)

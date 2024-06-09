@@ -17,14 +17,14 @@ class ZTwoDimension : public QAbstractListModel
 	Q_OBJECT;
 	QML_ELEMENT;
 public:
-	explicit ZTwoDimension(map<int, QByteArray> sysRoles, QObject* parent = nullptr);
+    explicit ZTwoDimension(QObject* parent = nullptr);
 	virtual ~ZTwoDimension() override;
 	int rowCount(const QModelIndex& index = QModelIndex()) const override;
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 	QHash<int, QByteArray> roleNames() const override;
 
-	virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const = 0;
-	virtual int zrowCount(const QModelIndex& index = QModelIndex()) const = 0;
+	virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const;
+	virtual int zrowCount(const QModelIndex& index = QModelIndex()) const;
 Q_SIGNALS:
 
 public:

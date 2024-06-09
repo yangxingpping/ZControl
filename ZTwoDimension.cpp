@@ -13,17 +13,10 @@ using std::vector;
 
 
 
-ZTwoDimension::ZTwoDimension(map<int, QByteArray> sysRoles, QObject* parent)
+ZTwoDimension::ZTwoDimension(QObject* parent)
 	:QAbstractListModel(parent)
 {
-	if (!sysRoles.empty())
-	{
-		assert(sysRoles.rbegin()->first < Qt::UserRole);
-	}
-	for (auto&& kv : sysRoles)
-	{
-		_roles.insert(kv.first, kv.second);
-	}
+
 }
 ZTwoDimension::~ZTwoDimension()
 {
@@ -39,4 +32,16 @@ QVariant ZTwoDimension::data(const QModelIndex& index, int role) const
 QHash<int, QByteArray> ZTwoDimension::roleNames() const
 {
 	return _roles;
+}
+
+QVariant ZTwoDimension::zdata(const QModelIndex& index, int role) const
+{
+	assert(0);
+	return QVariant();
+}
+
+int ZTwoDimension::zrowCount(const QModelIndex& index) const
+{
+	assert(0);
+	return 0;
 }
