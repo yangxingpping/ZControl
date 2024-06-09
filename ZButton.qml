@@ -11,21 +11,7 @@ RoundButton {
     width : 74
     anchors.horizontalCenter: Text.horizontalCenter
     text: "hello"
-    property string iconurl: ""
-    property color textColor: "#375278"
     property color normalBkColor: "#ffffff"
-    contentItem: IconLabel {
-        spacing: control.spacing
-        mirrored: control.mirrored
-        display: control.display
-
-        icon: control.icon
-        text: control.text
-
-        font: control.font
-        color: control.checked || control.highlighted ? control.palette.brightText :
-               control.flat && !control.down ? (control.visualFocus ? control.palette.highlight : control.palette.windowText) : control.palette.buttonText
-    }
 
     background: Rectangle {
         anchors.fill: parent

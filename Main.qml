@@ -8,7 +8,7 @@ Window {
     height: 480
     visible: true
     title: qsTr("Hello World")
-
+    Material.foreground: "red"
     Rectangle{
         id: r
         anchors.centerIn: parent

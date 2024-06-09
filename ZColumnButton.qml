@@ -17,7 +17,9 @@ Column{
             width: r.btnWidth
             height: r.btnHeigth
             text: name
-            iconurl: iconUrl
+            icon.source: iconUrl
+            icon.color: "transparent"
+            icon.height: height
         }
     }
 }
