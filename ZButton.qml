@@ -7,12 +7,13 @@ import QtQuick.Controls.impl
 
 RoundButton {
     id: control
-    radius: 6
+    radius: 2
     height: 26
     width : 74
     anchors.horizontalCenter: Text.horizontalCenter
     text: "hello"
-    property color normalBkColor: "#ffffff"
+    property string pmaskUrl: ""
+    property color normalBkColor: "green"
 
     bottomPadding: 2
     topPadding: 2
@@ -28,6 +29,16 @@ RoundButton {
             rows: 2// display === AbstractButton.TextUnderIcon ? 2 : 1
             Item{
                 width: contentR.width
+                height: contentR.height * 3 / 4
+                Image{
+                    anchors.fill: parent
+                    source: control.icon.source
+                    sourceSize.width: 100
+                    sourceSize.height: 100
+                }
+            }
+            Item{
+                width: contentR.width
                 height: contentR.height / 4
                 Text{
                     anchors.fill: parent
@@ -37,22 +48,12 @@ RoundButton {
                     font.pixelSize: 16
                 }
             }
-            Item{
-                width: contentR.width
-                height: contentR.height * 3 / 4
-                Image{
-                    anchors.fill: parent
-                    source: control.icon.source
-                    sourceSize.width: 100
-                    sourceSize.height: 100
-                }
-            }
         }
     }
     background: Rectangle {
         anchors.fill: parent
 
-        radius: 6
+        radius: 2
         color: control.highlighted ? control.Material.listHighlightColor : (checked ? "yellow" : control.normalBkColor)
         Ripple {
             width: parent.width
@@ -64,8 +65,11 @@ RoundButton {
             active: control.down || control.visualFocus || control.hovered
             color: control.Material.rippleColor
         }
+        Image{
+            anchors.fill: parent
+            source: control.pmaskUrl;
+        }
     }
-
     font.pixelSize: 10 // mainBottomBasePane.height > 450 ? 10 : 7
     spacing: 0
 }

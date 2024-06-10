@@ -8,7 +8,6 @@ Window {
     height: 480
     visible: true
     title: qsTr("Hello World")
-    Material.foreground: "red"
     Rectangle{
         id: r
         anchors.centerIn: parent
@@ -18,9 +17,11 @@ Window {
         ZRowButton{
             btnWidth: 100
             btnHeigth: 64
-            buttons: abc //["first", "second", "third"]
+            buttons: abc
             anchors.fill: parent
-
         }
+    }
+    Component.onCompleted: function(){
+        console.log(abc);
     }
 }

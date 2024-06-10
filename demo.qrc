@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>res/demo.svg</file>
+        <file>res/bottomCheckedMenuStyle.svg</file>
     </qresource>
 </RCC>

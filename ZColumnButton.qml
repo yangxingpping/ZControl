@@ -18,6 +18,7 @@ Column{
             width: r.btnWidth
             height: r.btnHeigth
             text: name
+            pmaskUrl: maskUrl
             icon.source: iconUrl
             icon.color: "transparent"
         }

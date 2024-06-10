@@ -10,6 +10,7 @@ public:
 	{
 		name,
 		iconUrl,
+        maskUrl,
 	};
 	Demo();
 	~Demo();
@@ -17,4 +18,5 @@ public:
 
 	QString _name{ "name" };
 	QString _iconUrl{ "qrc:/res/demo.svg" };
+    QString _maskUrl{"qrc:/res/bottomCheckedMenuStyle.svg"};
 };

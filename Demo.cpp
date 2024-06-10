@@ -21,6 +21,10 @@ QVariant Demo::getUser(ClientRole role)
 	{
 		return _iconUrl;
 	}break;
+    case Demo::ClientRole::maskUrl:
+	{
+		return _maskUrl;
+	}break;
 	default:
 		break;
 	}
