@@ -15,7 +15,7 @@ Window {
         width: 596;
         height: 394;
         color: "blue";
-        ZColumnButton{
+        ZRowButton{
             btnWidth: 100
             btnHeigth: 64
             buttons: abc //["first", "second", "third"]

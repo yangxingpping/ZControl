@@ -11,9 +11,14 @@ Row{
     Repeater{
         model: r.buttons
         ZButton{
+            display: AbstractButton.TextUnderIcon
+            palette.buttonText: "red"
+            radius: r.btnRadius
             width: r.btnWidth
             height: r.btnHeigth
-            text: modelData
+            text: name
+            icon.source: iconUrl
+            icon.color: "transparent"
         }
     }
 }
