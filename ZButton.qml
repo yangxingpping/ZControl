@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 import QtQuick.Controls.impl
@@ -13,6 +14,41 @@ RoundButton {
     text: "hello"
     property color normalBkColor: "#ffffff"
 
+    bottomPadding: 2
+    topPadding: 2
+    leftPadding: 2
+    rightPadding: 2
+    contentItem: Rectangle{
+        id: contentR
+        color: "transparent"
+        GridLayout{
+            anchors.fill: parent
+            rowSpacing: 0
+            columns: 1// display === AbstractButton.TextBesideIcon ? 2 : 1
+            rows: 2// display === AbstractButton.TextUnderIcon ? 2 : 1
+            Item{
+                width: contentR.width
+                height: contentR.height / 4
+                Text{
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    text: control.text
+                    font.pixelSize: 16
+                }
+            }
+            Item{
+                width: contentR.width
+                height: contentR.height * 3 / 4
+                Image{
+                    anchors.fill: parent
+                    source: control.icon.source
+                    sourceSize.width: 100
+                    sourceSize.height: 100
+                }
+            }
+        }
+    }
     background: Rectangle {
         anchors.fill: parent
 
