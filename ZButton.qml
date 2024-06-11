@@ -13,7 +13,7 @@ RoundButton {
     anchors.horizontalCenter: Text.horizontalCenter
     text: "hello"
     property string pmaskUrl: ""
-    property color normalBkColor: "green"
+    property color normalBkColor: "transparent"
 
     bottomPadding: 2
     topPadding: 2
@@ -33,8 +33,8 @@ RoundButton {
                 Image{
                     anchors.fill: parent
                     source: control.icon.source
-                    sourceSize.width: 100
-                    sourceSize.height: 100
+                    sourceSize.width: 256
+                    sourceSize.height: 256
                 }
             }
             Item{

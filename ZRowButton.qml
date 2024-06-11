@@ -14,7 +14,7 @@ Row{
             display: AbstractButton.TextUnderIcon
             palette.buttonText: "red"
             radius: r.btnRadius
-            width: r.btnWidth
+            width: parent.width / r.buttons.rowCount()
             height: r.btnHeigth
             text: name
             pmaskUrl: maskUrl

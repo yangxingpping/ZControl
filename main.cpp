@@ -18,6 +18,8 @@ int main(int argc, char* argv[])
 	auto pdemo = new ZTwoDimensionImpl<ZButtonMdelInfo>({}, &app);
 	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+    pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+    pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
 	QObject::connect(
 		&engine,
