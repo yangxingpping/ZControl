@@ -3,7 +3,7 @@
 #include <QList>
 #include <QQmlContext>
 #include "ZTwoDimensionImpl.h"
-#include "Demo.h"
+#include "ZButtonMdelInfo.h"
 
 
 
@@ -15,9 +15,9 @@ int main(int argc, char* argv[])
 
 	QQmlApplicationEngine engine;
 
-	auto pdemo = new ZTwoDimensionImpl<Demo>({}, &app);
-	pdemo->_data.push_back(std::make_unique<Demo>());
-	pdemo->_data.push_back(std::make_unique<Demo>());
+	auto pdemo = new ZTwoDimensionImpl<ZButtonMdelInfo>({}, &app);
+	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
 	QObject::connect(
 		&engine,

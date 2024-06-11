@@ -15,8 +15,8 @@ qt6_add_resources(Z_RESOURCES_TARGET demo.qrc)
 
 qt_add_executable(appzControl
     main.cpp
-    Demo.cpp
-    Demo.h
+    ZButtonMdelInfo.cpp
+    ZButtonMdelInfo.h
     ${Z_RESOURCES_TARGET}
 )
 
