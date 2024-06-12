@@ -18,6 +18,15 @@ Window {
         radius: [5,5,0,15]
         color: "yellow"
     }
+    Rectangle{
+        anchors.centerIn: parent
+        width: 400
+        height: 100
+        ZRowButton{
+            anchors.fill: parent
+            buttons: abc
+        }
+    }
 
     Rectangle{
         anchors.bottom: parent.bottom
