@@ -19,8 +19,8 @@ Window {
     Rectangle{
         id: r
         anchors.centerIn: parent
-        width: 596;
-        height: 394;
+        width: 300;
+        height: 100;
         color: "blue";
         ZRowButton{
             btnWidth: 100
