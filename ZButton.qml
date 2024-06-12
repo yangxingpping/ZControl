@@ -10,7 +10,7 @@ RoundButton {
     radius: 2
     text: "hello"
     property string pmaskUrl: ""
-    property var textImageRatio: [1,15.5]
+    property var textImageRatio: [1,2.5]
     bottomPadding: 2
     topPadding: 2
     leftPadding: 2
@@ -30,15 +30,21 @@ RoundButton {
             sourceSize.height: 256
             visible: control.display != AbstractButton.TextOnly
         }
-        Text{
-            text: control.text
+        Item{
             x: control.display === AbstractButton.TextBesideIcon ? contentR.width * control.textImageRatio[1] / (control.textImageRatio[1] + control.textImageRatio[0]) : 0;
             width: contentR.width - x;
             y: control.display === AbstractButton.TextUnderIcon ? contentR.height * control.textImageRatio[1] / (control.textImageRatio[1] + control.textImageRatio[0]) : 0
             height: contentR.height - y;
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 15
+            visible: control.display !== AbstractButton.IconOnly;
+            Text{
+                anchors.fill: parent
+                text: control.text
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                fontSizeMode: Text.Fit;
+                minimumPixelSize: 10;
+                font.pixelSize: 72
+            }
         }
     }
     background: Rectangle {
