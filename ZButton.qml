@@ -8,46 +8,37 @@ import QtQuick.Controls.impl
 RoundButton {
     id: control
     radius: 2
-    height: 26
-    width : 74
-    anchors.horizontalCenter: Text.horizontalCenter
     text: "hello"
     property string pmaskUrl: ""
-    property color normalBkColor: "transparent"
-
+    property var textImageRatio: [1,15.5]
     bottomPadding: 2
     topPadding: 2
     leftPadding: 2
     rightPadding: 2
+    spacing: 0
+
     contentItem: Rectangle{
         id: contentR
         color: "transparent"
-        GridLayout{
-            anchors.fill: parent
-            rowSpacing: 0
-            columns: 1// display === AbstractButton.TextBesideIcon ? 2 : 1
-            rows: 2// display === AbstractButton.TextUnderIcon ? 2 : 1
-            Item{
-                width: contentR.width
-                height: contentR.height * 3 / 4
-                Image{
-                    anchors.fill: parent
-                    source: control.icon.source
-                    sourceSize.width: 256
-                    sourceSize.height: 256
-                }
-            }
-            Item{
-                width: contentR.width
-                height: contentR.height / 4
-                Text{
-                    anchors.fill: parent
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    text: control.text
-                    font.pixelSize: 16
-                }
-            }
+        Image{
+            x: 0
+            y: 0
+            width: control.display === AbstractButton.TextBesideIcon ? contentR.width * control.textImageRatio[1] / (control.textImageRatio[1] + control.textImageRatio[0]) : contentR.width;
+            height: control.display === AbstractButton.TextUnderIcon ? contentR.height * control.textImageRatio[1] / (control.textImageRatio[1] + control.textImageRatio[0]) : contentR.height;
+            source: control.icon.source
+            sourceSize.width: 512
+            sourceSize.height: 256
+            visible: control.display != AbstractButton.TextOnly
+        }
+        Text{
+            text: control.text
+            x: control.display === AbstractButton.TextBesideIcon ? contentR.width * control.textImageRatio[1] / (control.textImageRatio[1] + control.textImageRatio[0]) : 0;
+            width: contentR.width - x;
+            y: control.display === AbstractButton.TextUnderIcon ? contentR.height * control.textImageRatio[1] / (control.textImageRatio[1] + control.textImageRatio[0]) : 0
+            height: contentR.height - y;
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 15
         }
     }
     background: Rectangle {
@@ -70,6 +61,23 @@ RoundButton {
             source: control.pmaskUrl;
         }
     }
-    font.pixelSize: 10 // mainBottomBasePane.height > 450 ? 10 : 7
-    spacing: 0
+    Component.onCompleted: function(){
+        //propety check
+        if(display===AbstractButton.TextOnly || display===AbstractButton.IconOnly){
+            if(textImageRatio.length===0 && display===AbstractButton.TextOnly){
+                console.warn("warn")
+                textImageRatio=[1,0.0001];
+            }
+            if(textImageRatio.length>1 && display===AbstractButton.IconOnly){
+                console.warn("warn");
+                textImageRatio=[0.0001,1];
+            }
+        }
+        else{
+            if(textImageRatio.length!==2){
+                console.warn("warn");
+                textImageRatio=[1,1];
+            }
+        }
+    }
 }
