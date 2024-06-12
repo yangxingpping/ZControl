@@ -12,18 +12,18 @@ int main(int argc, char* argv[])
 	//qRegisterMetaType<ZTwoDimension>("ZTwoDimension");
 
 	QGuiApplication app(argc, argv);
-
+	QQmlEngine* p2 = new QQmlEngine(&app);
 	QQmlApplicationEngine engine;
-
+	//ZConfig* pconf = p2->singletonInstance<ZConfig*>("zControl", "ZConfig");
 	auto pdemo = new ZTwoDimensionImpl<ZButtonMdelInfo>({}, &app);
 	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
     pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
     pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
-
+	
 	QTimer::singleShot(1000, &app, [&]() {
-		ZConfig* pconf = engine.singletonInstance<ZConfig*>("zControl", "ZConfig");
+		//ZConfig* pconf = engine.singletonInstance<ZConfig*>("zControl", "ZConfig");
 		//pconf->color({ 0,0,255 });
 		int i = 1;
 		});
