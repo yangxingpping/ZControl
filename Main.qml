@@ -8,6 +8,14 @@ Window {
     height: 480
     visible: true
     title: qsTr("Hello World")
+    ZRectangle{
+        x: 0
+        y: 0
+        width: 50
+        height: 100
+        radius: [5,5,0,5]
+        color: "red"
+    }
     Rectangle{
         id: r
         anchors.centerIn: parent

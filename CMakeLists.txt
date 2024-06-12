@@ -28,7 +28,7 @@ qt_add_qml_module(appzControl
     QML_FILES ZRowButton.qml
     QML_FILES ZColumnButton.qml
     RESOURCES demo.qrc
-    SOURCES   ZTwoDimension.h ZTwoDimension.cpp
+    SOURCES   ZTwoDimension.h ZTwoDimension.cpp ZRectangle.h ZRectangle.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
