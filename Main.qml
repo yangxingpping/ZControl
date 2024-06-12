@@ -5,8 +5,8 @@ import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 
 Window {
-    width: 640
-    height: 480
+    width: 800
+    height: 640
     visible: true
     title: qsTr("Hello World")
     ZRectangle{
