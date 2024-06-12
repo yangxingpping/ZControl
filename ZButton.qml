@@ -54,7 +54,7 @@ RoundButton {
         anchors.fill: parent
 
         radius: 2
-        color: control.highlighted ? control.Material.listHighlightColor : (checked ? "yellow" : control.normalBkColor)
+        color: control.highlighted ? control.Material.listHighlightColor : (checked ? "yellow" : ZConfig.color)
         Ripple {
             width: parent.width
             height: parent.height

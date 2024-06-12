@@ -6,16 +6,14 @@ Row{
     anchors.fill: parent
     spacing: 1
     property var buttons: null
-    property int btnWidth: 74
-    property int btnHeigth: 26
     Repeater{
         model: r.buttons
         ZButton{
             display: AbstractButton.TextUnderIcon
             palette.buttonText: "red"
             radius: r.btnRadius
-            width: parent.width / r.buttons.rowCount()
-            height: r.btnHeigth
+            width: r.width / r.buttons.rowCount()
+            height: r.height
             text: name
             pmaskUrl: maskUrl
             icon.source: iconUrl
