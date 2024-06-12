@@ -4,7 +4,7 @@
 #include <QQmlContext>
 #include "ZTwoDimensionImpl.h"
 #include "ZButtonMdelInfo.h"
-
+#include "ZConfig.h"
 
 
 int main(int argc, char* argv[])
@@ -21,6 +21,13 @@ int main(int argc, char* argv[])
     pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
     pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
+
+	QTimer::singleShot(3000, &app, [&]() {
+		ZConfig* pconf = engine.singletonInstance<ZConfig*>("zControl", "ZConfig");
+		pconf->color({ 0,0,255 });
+		int i = 1;
+		});
+
 	QObject::connect(
 		&engine,
 		&QQmlApplicationEngine::objectCreationFailed,

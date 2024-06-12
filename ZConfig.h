@@ -15,4 +15,5 @@ class ZConfig : public QObject
 	QML_SINGLETON
 public:
 	explicit ZConfig(QObject* parent = nullptr);
+	static int typeId;
 };
