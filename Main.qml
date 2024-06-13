@@ -23,7 +23,6 @@ Window {
         model: ZConfig.tableHeader
         delegate: Rectangle {
             implicitHeight: horizontalHeader.implicitHeight
-            //implicitWidth: 200
             Label {
                 anchors.centerIn: parent
                 id: delegateLabel
@@ -34,41 +33,46 @@ Window {
             }
         }
     }
-    TableView {
-        id: tb
+
+    Rectangle{
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: horizontalHeader.bottom
         anchors.bottom: parent.bottom
-        columnSpacing: 1
-        rowSpacing: 1
-        clip: true
+        color: "blue"
+        TableView {
+            id: tb
+            anchors.fill: parent
+            columnSpacing: 1
+            rowSpacing: 1
+            clip: true
+            boundsBehavior: Flickable.StopAtBounds
+            model: cc
 
-        model: cc
+            delegate: Rectangle {
+                implicitWidth: tb.width / ZConfig.tableHeader.length
+                implicitHeight: 50
+                Text {
+                    anchors.fill: parent
+                    text: display
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+                TableView.editDelegate: TextField {
+                     anchors.fill: parent
+                     text: display
+                     horizontalAlignment: TextInput.AlignHCenter
+                     verticalAlignment: TextInput.AlignVCenter
+                     Component.onCompleted: selectAll()
 
-        delegate: Rectangle {
-            implicitWidth: tb.width / ZConfig.tableHeader.length
-            implicitHeight: 50
-            Text {
-                anchors.fill: parent
-                text: display
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-            TableView.editDelegate: TextField {
-                 anchors.fill: parent
-                 text: display
-                 horizontalAlignment: TextInput.AlignHCenter
-                 verticalAlignment: TextInput.AlignVCenter
-                 Component.onCompleted: selectAll()
-
-                 TableView.onCommit: {
-                     display = text
-                     // display = text is short-hand for:
-                     // let index = TableView.view.modelIndex(column, row)
-                     // TableView.view.model.setData(index, text, Qt.DisplayRole)
+                     TableView.onCommit: {
+                         display = text
+                         // display = text is short-hand for:
+                         // let index = TableView.view.modelIndex(column, row)
+                         // TableView.view.model.setData(index, text, Qt.DisplayRole)
+                     }
                  }
-             }
+            }
         }
     }
 
