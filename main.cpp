@@ -3,6 +3,7 @@
 #include <QList>
 #include <QQmlContext>
 #include "ZTwoDimensionImpl.h"
+#include "ZTableModelImpl.h"
 #include "ZButtonMdelInfo.h"
 #include "ZConfig.h"
 
@@ -22,6 +23,13 @@ int main(int argc, char* argv[])
     pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
 	
+	auto cc = new ZTableModelImpl<ZButtonMdelInfo>({}, &app);
+	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+	engine.rootContext()->setContextProperty("cc", cc);
+
 	QTimer::singleShot(1000, &app, [&]() {
 		//ZConfig* pconf = engine.singletonInstance<ZConfig*>("zControl", "ZConfig");
 		//pconf->color({ 0,0,255 });

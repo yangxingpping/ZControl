@@ -19,7 +19,7 @@ Row{
             icon.source: iconUrl
             icon.color: "transparent"
             Component.onCompleted: function(){
-                console.log("model data=%1".arg(iconUrl))
+                console.log("model data=%1 %2".arg(iconUrl).arg(zoptVal))
             }
         }
     }

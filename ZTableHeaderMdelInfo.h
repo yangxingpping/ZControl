@@ -3,18 +3,18 @@
 
 #include <QVariant>
 
-class ZButtonMdelInfo
+class ZTableHeaderMdelInfo
 {
 public:
 	enum class ClientRole
 	{
 		name,
 		iconUrl,
-        maskUrl,
+		maskUrl,
 		zoptVal,
 	};
-	ZButtonMdelInfo();
-	~ZButtonMdelInfo();
+	ZTableHeaderMdelInfo();
+	~ZTableHeaderMdelInfo();
 	QVariant getUser(ClientRole role);
 
 	QString _name{ "name" };
