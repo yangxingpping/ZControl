@@ -10,8 +10,35 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
+    HorizontalHeaderView {
+        id: horizontalHeader
+        anchors.left: parent.left
+        anchors.top: parent.top
+        syncView: tb
+        interactive: false
+        implicitHeight: 50
+
+        clip: true
+        model: 2
+        delegate: Rectangle {
+            implicitHeight: horizontalHeader.implicitHeight
+            implicitWidth: 100
+            Label {
+                anchors.centerIn: parent
+                id: delegateLabel
+                text: index
+                color: "red"
+                opacity: 0.7
+                font.bold: true
+            }
+        }
+    }
     TableView {
-        anchors.fill: parent
+        id: tb
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: horizontalHeader.bottom
+        anchors.bottom: parent.bottom
         columnSpacing: 1
         rowSpacing: 1
         clip: true
@@ -23,13 +50,13 @@ Window {
             implicitHeight: 50
             Text {
                 anchors.fill: parent
-                text: name
+                text: display
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
             TableView.editDelegate: TextField {
                  anchors.fill: parent
-                 text: name
+                 text: display
                  horizontalAlignment: TextInput.AlignHCenter
                  verticalAlignment: TextInput.AlignVCenter
                  Component.onCompleted: selectAll()

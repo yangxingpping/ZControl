@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
 	
-	auto cc = new ZTableModelImpl<ZButtonMdelInfo>({}, &app);
+	auto cc = new ZTableModelImpl<ZButtonMdelInfo>({ {Qt::DisplayRole, "display"} }, &app);
 	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());

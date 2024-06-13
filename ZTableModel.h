@@ -16,9 +16,13 @@
      QVariant data(const QModelIndex& index, int role) const override;
      QHash<int, QByteArray> roleNames() const override;
 
+     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+
 	 virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const;
 	 virtual int zrowCount(const QModelIndex& index = QModelIndex()) const;
+     virtual int zcolumnCount(const QModelIndex& index) const;
      Qt::ItemFlags flags(const QModelIndex& index) const override;
+
  public:
 	 QHash<int, QByteArray> _roles;
  };

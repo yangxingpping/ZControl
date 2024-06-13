@@ -18,6 +18,6 @@ public:
 	QVariant getUser(ClientRole role);
 
 	QString _name{ "name" };
-	QString _iconUrl{ "qrc:/res/demo.svg" };
-    QString _maskUrl{"qrc:/res/bottomCheckedMenuStyle.svg"};
+	QString _iconUrl{ "icon" };
+    QString _maskUrl{"mask"};
 };

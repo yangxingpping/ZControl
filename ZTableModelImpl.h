@@ -22,11 +22,11 @@ public:
 	explicit ZTableModelImpl(map<int, QByteArray> sysRoles, QObject* parent = nullptr)
         : ZTableModel(parent)
 	{
-		constexpr auto entries = magic_enum::enum_entries<ClientRole>();
-		for (auto&& kv : entries)
+		for (auto&& kv : sysRoles)
 		{
-			_roles.insert(magic_enum::enum_integer(kv.first) + Qt::UserRole, QByteArrayLiteral(kv.second.data()));
+			_roles.insert(kv.first, kv.second);
 		}
+		
 	}
 	virtual ~ZTableModelImpl() override
 	{}
@@ -37,9 +37,9 @@ public:
 			assert(0);
 			return QVariant();
 		}
-		if (role >= Qt::UserRole)
+		if (role == Qt::DisplayRole)
 		{
-			auto opte = magic_enum::enum_cast<ClientRole>(role - Qt::UserRole);
+			auto opte = magic_enum::enum_cast<ClientRole>(index.column());
 			assert(opte.has_value());
 			return _data[index.row()]->getUser(opte.value());
 		}
@@ -48,6 +48,10 @@ public:
 	virtual int zrowCount(const QModelIndex& index = QModelIndex()) const override
 	{
 		return _data.size();
+	}
+	virtual int zcolumnCount(const QModelIndex& index) const override
+	{
+		return magic_enum::enum_count<ClientRole>();
 	}
 Q_SIGNALS:
 
