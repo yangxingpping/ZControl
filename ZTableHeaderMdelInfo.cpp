@@ -27,7 +27,7 @@ QVariant ZTableHeaderMdelInfo::getUser(ClientRole role)
 	}break;
 	case ZTableHeaderMdelInfo::ClientRole::zoptVal:
 	{
-		return _name;
+		return "four";
 	}
 	default:
 		break;

@@ -49,9 +49,18 @@ Window {
             boundsBehavior: Flickable.StopAtBounds
             model: cc
 
+            columnWidthProvider: function(column){
+                if(column%2!==0){
+                    return 0
+                }
+                return tb.width / ZConfig.tableHeader.length
+            }
+
             delegate: Rectangle {
                 implicitWidth: tb.width / ZConfig.tableHeader.length
                 implicitHeight: 50
+
+
                 Text {
                     anchors.fill: parent
                     text: display

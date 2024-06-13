@@ -28,7 +28,7 @@ public:
 		}
 		
 	}
-	virtual ~ZTableModelImpl() override
+	virtual ~ZTableModelImpl()
 	{}
 	virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const override
 	{
