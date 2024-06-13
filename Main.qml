@@ -3,6 +3,7 @@ import QtQml
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
+import zControl
 
 Window {
     width: 800
@@ -19,14 +20,14 @@ Window {
         implicitHeight: 50
 
         clip: true
-        model: 2
+        model: ZConfig.tableHeader
         delegate: Rectangle {
             implicitHeight: horizontalHeader.implicitHeight
-            implicitWidth: 100
+            //implicitWidth: 200
             Label {
                 anchors.centerIn: parent
                 id: delegateLabel
-                text: index
+                text: modelData
                 color: "red"
                 opacity: 0.7
                 font.bold: true
@@ -46,7 +47,7 @@ Window {
         model: cc
 
         delegate: Rectangle {
-            implicitWidth: 100
+            implicitWidth: tb.width / ZConfig.tableHeader.length
             implicitHeight: 50
             Text {
                 anchors.fill: parent
