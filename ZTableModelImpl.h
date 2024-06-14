@@ -53,6 +53,18 @@ public:
 	{
 		return magic_enum::enum_count<ClientRole>();
 	}
+	virtual bool zsetData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole)
+	{
+		bool ret{ false };
+		auto opte = magic_enum::enum_cast<ClientRole>(index.column());
+		if(!opte.has_value())
+		{
+			return false;
+		}
+		ret = _data[index.row()]->setUser(opte.value(), value);
+		emit dataChanged(index, index, { role });
+		return ret;
+	}
 Q_SIGNALS:
 
 public:

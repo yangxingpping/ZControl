@@ -5,6 +5,7 @@
 #include "ZTwoDimensionImpl.h"
 #include "ZTableModelImpl.h"
 #include "ZButtonMdelInfo.h"
+#include "ZTableModelInfo.h"
 #include "ZConfig.h"
 
 
@@ -23,16 +24,18 @@ int main(int argc, char* argv[])
     pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
 	
-	auto cc = new ZTableModelImpl<ZButtonMdelInfo>({ {Qt::DisplayRole, "display"} }, &app);
-	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
-	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
-	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
-	cc->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+	auto cc = new ZTableModelImpl<ZTableModelInfo>({ {Qt::DisplayRole, "display"} }, &app);
+	cc->_data.push_back(std::make_unique<ZTableModelInfo>());
+	cc->_data.push_back(std::make_unique<ZTableModelInfo>());
+	cc->_data.push_back(std::make_unique<ZTableModelInfo>());
+	cc->_data.push_back(std::make_unique<ZTableModelInfo>());
 	engine.rootContext()->setContextProperty("cc", cc);
 
-	QTimer::singleShot(1000, &app, [&]() {
+	QTimer::singleShot(3000, &app, [&]() {
 		//ZConfig* pconf = engine.singletonInstance<ZConfig*>("zControl", "ZConfig");
 		//pconf->color({ 0,0,255 });
+		auto indx = cc->index(0, 0);
+		cc->setData(indx, "next", Qt::DisplayRole);
 		int i = 1;
 		});
 

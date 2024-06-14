@@ -50,9 +50,9 @@ Window {
             model: cc
 
             columnWidthProvider: function(column){
-                if(column%2!==0){
+                /*if(column%2!==0){
                     return 0
-                }
+                }*/
                 return tb.width / ZConfig.tableHeader.length
             }
 

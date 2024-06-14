@@ -22,6 +22,10 @@ qt_add_executable(appzControl
     main.cpp
     ZButtonMdelInfo.cpp
     ZButtonMdelInfo.h
+    ZTableModelInfo.cpp
+    ZTableModelInfo.h
+    ZTableHeaderMdelInfo.h
+    ZTableHeaderMdelInfo.cpp
     ${Z_RESOURCES_TARGET}
 )
 

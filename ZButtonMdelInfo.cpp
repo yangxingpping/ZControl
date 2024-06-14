@@ -15,7 +15,7 @@ QVariant ZButtonMdelInfo::getUser(ClientRole role)
 	{
 	case ZButtonMdelInfo::ClientRole::name:
 	{
-		return "ff";
+		return _name;
 	}break;
 	case ZButtonMdelInfo::ClientRole::iconUrl:
 	{

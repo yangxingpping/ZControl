@@ -31,6 +31,11 @@ QHash<int, QByteArray> ZTableModel::roleNames() const
 	return _roles;
 }
 
+bool ZTableModel::setData(const QModelIndex& index, const QVariant& value, int role /*= Qt::EditRole*/)
+{
+	return zsetData(index, value, role);
+}
+
 QVariant ZTableModel::headerData(int section, Qt::Orientation orientation, int role /*= Qt::DisplayRole*/) const
 {
 	if (role == Qt::DisplayRole) {
@@ -64,6 +69,12 @@ int ZTableModel::zcolumnCount(const QModelIndex& index) const
 {
 	assert(0);
 	return 0;
+}
+
+bool ZTableModel::zsetData(const QModelIndex& index, const QVariant& value, int role /*= Qt::EditRole*/)
+{
+	assert(0);
+	return false;
 }
 
 Qt::ItemFlags ZTableModel::flags(const QModelIndex& index) const
