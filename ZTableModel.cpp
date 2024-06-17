@@ -26,14 +26,15 @@ QVariant ZTableModel::data(const QModelIndex& index, int role) const
 	return zdata(index, role);
 }
 
-QHash<int, QByteArray> ZTableModel::roleNames() const
-{
-	return _roles;
-}
-
 bool ZTableModel::setData(const QModelIndex& index, const QVariant& value, int role /*= Qt::EditRole*/)
 {
 	return zsetData(index, value, role);
+}
+
+QHash<int, QByteArray> ZTableModel::roleNames() const
+{
+	assert(!_roles.isEmpty());
+	return _roles;
 }
 
 QVariant ZTableModel::headerData(int section, Qt::Orientation orientation, int role /*= Qt::DisplayRole*/) const
@@ -51,6 +52,15 @@ QVariant ZTableModel::headerData(int section, Qt::Orientation orientation, int r
 	}
 	return QVariant();
 
+}
+
+bool ZTableModel::insertRows(int row, int count, const QModelIndex& parent)
+{
+	bool ret{ false };
+	beginInsertRows(parent, row, row + count - 1);
+	ret = zinsertRows(row, count, parent);
+	endInsertRows();
+	return ret;
 }
 
 QVariant ZTableModel::zdata(const QModelIndex& index, int role /*= Qt::DisplayRole*/) const
@@ -77,10 +87,16 @@ bool ZTableModel::zsetData(const QModelIndex& index, const QVariant& value, int 
 	return false;
 }
 
+bool ZTableModel::zinsertRows(int row, int count, const QModelIndex& parent)
+{
+	assert(0);
+	return false;
+}
+
 Qt::ItemFlags ZTableModel::flags(const QModelIndex& index) const
 {
 	if (!index.isValid())
 		return Qt::NoItemFlags;
-	return Qt::ItemIsEditable | QAbstractTableModel::flags(index);
+	return /*Qt::ItemIsEditable |*/ QAbstractTableModel::flags(index);
 }
 

@@ -10,7 +10,7 @@ Window {
     height: 640
     visible: true
     title: qsTr("Hello World")
-
+    /*
     HorizontalHeaderView {
         id: horizontalHeader
         anchors.left: parent.left
@@ -50,9 +50,6 @@ Window {
             model: cc
 
             columnWidthProvider: function(column){
-                /*if(column%2!==0){
-                    return 0
-                }*/
                 return tb.width / ZConfig.tableHeader.length
             }
 
@@ -84,8 +81,8 @@ Window {
             }
         }
     }
-
-    /*
+    */
+   
     ZRectangle{
         id: r1
         x: 10
@@ -121,5 +118,4 @@ Window {
     Component.onCompleted: function(){
         console.log("hello=%1".arg(ZConfig.color));
     }
-    */
 }

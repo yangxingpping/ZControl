@@ -8,7 +8,7 @@ import QtQuick.Controls.impl
 RoundButton {
     id: control
     radius: 2
-    text: "hello"
+    text: "hellox"
     property string pmaskUrl: ""
     property var textImageRatio: [1,2.5]
     bottomPadding: 2

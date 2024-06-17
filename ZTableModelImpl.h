@@ -19,7 +19,7 @@ class ZTableModelImpl : public ZTableModel
 public:
 	using ClientRole = typename ValueType::ClientRole;
 	static_assert(std::is_enum_v<ClientRole>);
-	explicit ZTableModelImpl(map<int, QByteArray> sysRoles, QObject* parent = nullptr)
+	explicit ZTableModelImpl(QObject* parent = nullptr, map<int, QByteArray> sysRoles = {})
         : ZTableModel(parent)
 	{
 		for (auto&& kv : sysRoles)
@@ -27,6 +27,21 @@ public:
 			_roles.insert(kv.first, kv.second);
 		}
 		
+	}
+	ZTableModelImpl(ZTableModelImpl& ref)
+		:_data(ref._data)
+		,_roles(ref._roles)
+	{
+	}
+	ZTableModelImpl(ZTableModelImpl&& ref)
+		:_roles(std::move(ref._roles))
+		, _data(std::move(ref._data))
+	{
+	}
+	ZTableModelImpl& operator=(const ZTableModelImpl& p)
+	{
+		_roles = p._roles;
+		_data = p._data;
 	}
 	virtual ~ZTableModelImpl()
 	{}
@@ -51,9 +66,10 @@ public:
 	}
 	virtual int zcolumnCount(const QModelIndex& index) const override
 	{
-		return magic_enum::enum_count<ClientRole>();
+		int ret = magic_enum::enum_count<ClientRole>();
+		return ret;
 	}
-	virtual bool zsetData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole)
+	virtual bool zsetData(const QModelIndex& index, const QVariant& value, int role = Qt::DisplayRole)
 	{
 		bool ret{ false };
 		auto opte = magic_enum::enum_cast<ClientRole>(index.column());
@@ -64,6 +80,24 @@ public:
 		ret = _data[index.row()]->setUser(opte.value(), value);
 		emit dataChanged(index, index, { role });
 		return ret;
+	}
+
+	virtual bool zsetData2(int row, ClientRole col,  const QVariant& value, int role = Qt::DisplayRole)
+	{
+		bool ret{ false };
+		ret = zsetData(this->index(row, magic_enum::enum_integer(col)), value, role);
+		/*ret = _data[row]->setUser(col, value);
+		emit dataChanged(index, index, { role });*/
+		return ret;
+	}
+
+	virtual bool zinsertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override
+	{
+		while(_data.size() < row+count)
+		{
+			_data.push_back(std::make_unique<ValueType>());
+		}
+		return true;
 	}
 Q_SIGNALS:
 

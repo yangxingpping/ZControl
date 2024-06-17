@@ -23,15 +23,15 @@ QVariant ZButtonMdelInfo::getUser(ClientRole role)
 	}break;
     case ZButtonMdelInfo::ClientRole::maskUrl:
 	{
-		return "helloA";
+		return "hello";
 	}break;
 	case ZButtonMdelInfo::ClientRole::zoptVal:
 	{
-		return "worldB";
+		return "world";
 	}
-	case ZButtonMdelInfo::ClientRole::optVal2:
+	case ZButtonMdelInfo::ClientRole::optVal:
 	{
-		return "nextH";
+		return "next";
 	}break;
 	default:
 		break;

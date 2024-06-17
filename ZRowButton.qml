@@ -14,12 +14,12 @@ Row{
             radius: r.btnRadius
             width: r.width / r.buttons.rowCount()
             height: r.height
-            text: name
+            text: optVal2
             pmaskUrl: maskUrl
             icon.source: iconUrl
             icon.color: "transparent"
             Component.onCompleted: function(){
-                console.log("model data=%1 %2".arg(iconUrl).arg(zoptVal))
+                console.log("model data=%1 %2".arg(iconUrl).arg(optVal2))
             }
         }
     }

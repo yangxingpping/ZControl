@@ -29,7 +29,8 @@ public:
 		}
 	}
 	virtual ~ZTwoDimensionImpl() override
-	{}
+	{
+	}
 	virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const override
 	{
 		if (_data.size() <= index.row())

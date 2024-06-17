@@ -22,6 +22,7 @@ public:
 	int rowCount(const QModelIndex& index = QModelIndex()) const override;
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 	QHash<int, QByteArray> roleNames() const override;
+	bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
 
 	virtual QVariant zdata(const QModelIndex& index, int role = Qt::DisplayRole) const;
 	virtual int zrowCount(const QModelIndex& index = QModelIndex()) const;

@@ -12,7 +12,7 @@ public:
 		iconUrl,
         maskUrl,
 		zoptVal,
-		optVal2,
+		optVal,
 	};
 	ZButtonMdelInfo();
 	~ZButtonMdelInfo();
