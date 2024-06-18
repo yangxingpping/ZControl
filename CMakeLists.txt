@@ -16,7 +16,7 @@ qt6_add_resources(Z_RESOURCES_TARGET demo.qrc)
 add_subdirectory(widgetQML)
 add_subdirectory(ZControls)
 
-set(QML_IMPORT_NAME "zControl")
+set(QML_IMPORT_NAME "ZControl")
 set(QML_IMPORT_VERSION 1.0)
 
 qt_add_executable(appzControl
