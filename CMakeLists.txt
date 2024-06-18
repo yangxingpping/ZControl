@@ -20,8 +20,8 @@ set(QML_IMPORT_VERSION 1.0)
 
 qt_add_executable(appzControl
     main.cpp
-    ZButtonMdelInfo.cpp
-    ZButtonMdelInfo.h
+    ZButtonModelInfo.cpp
+    ZButtonModelInfo.h
     ZTableModelInfo.cpp
     ZTableModelInfo.h
     ZTableHeaderMdelInfo.h

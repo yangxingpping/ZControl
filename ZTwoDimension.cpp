@@ -34,6 +34,12 @@ QHash<int, QByteArray> ZTwoDimension::roleNames() const
 	return _roles;
 }
 
+bool ZTwoDimension::insertRows(int row, int count, const QModelIndex& parent)
+{
+	assert(0);
+	return false;
+}
+
 QVariant ZTwoDimension::zdata(const QModelIndex& index, int role) const
 {
 	assert(0);

@@ -3,7 +3,7 @@
 
 #include <QVariant>
 
-class ZButtonMdelInfo
+class ZButtonModelInfo
 {
 public:
 	enum class ClientRole
@@ -14,8 +14,8 @@ public:
 		zoptVal,
 		optVal2,
 	};
-	ZButtonMdelInfo();
-	~ZButtonMdelInfo();
+	ZButtonModelInfo();
+	~ZButtonModelInfo();
 	QVariant getUser(ClientRole role);
 
 	QString _name{ "name" };

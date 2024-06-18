@@ -4,7 +4,7 @@
 #include <QQmlContext>
 #include "ZTwoDimensionImpl.h"
 #include "ZTableModelImpl.h"
-#include "ZButtonMdelInfo.h"
+#include "ZButtonModelInfo.h"
 #include "ZTableModelInfo.h"
 #include "ZTableModelFinal.h"
 #include "ZConfig.h"
@@ -18,10 +18,10 @@ int main(int argc, char* argv[])
 	QQmlEngine* p2 = new QQmlEngine(&app);
 	QQmlApplicationEngine engine;
 	//ZConfig* pconf = p2->singletonInstance<ZConfig*>("zControl", "ZConfig");
-	auto pdemo = new ZTwoDimensionImpl<ZButtonMdelInfo>({}, &app);
-	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
-	pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
-    pdemo->_data.push_back(std::make_unique<ZButtonMdelInfo>());
+	auto pdemo = new ZTwoDimensionImpl<ZButtonModelInfo>({}, &app);
+	pdemo->_data.push_back(std::make_unique<ZButtonModelInfo>());
+	pdemo->_data.push_back(std::make_unique<ZButtonModelInfo>());
+    pdemo->_data.push_back(std::make_unique<ZButtonModelInfo>());
 	engine.rootContext()->setContextProperty("abc", pdemo);
 	
 	/*auto cc = new ZTableModelImpl<ZTableModelInfo>({ {Qt::DisplayRole, "display"}, {Qt::EditRole, "edit"} }, &app);
