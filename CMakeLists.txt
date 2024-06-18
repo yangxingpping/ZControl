@@ -5,40 +5,40 @@ set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
 
 project(zControl VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON) 
+set(CMAKE_AUTORCC ON) 
+set(CMAKE_AUTOUIC ON) 
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_DEBUG_POSTFIX "d")
+
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Gui Qml)
 
 qt_standard_project_setup(REQUIRES 6.5)
+
+include_directories(ZControls)
 
 qt6_add_resources(Z_RESOURCES_TARGET demo.qrc)
 
 add_subdirectory(widgetQML)
 add_subdirectory(ZControls)
+add_subdirectory(demo2)
 
 set(QML_IMPORT_NAME "ZControl")
 set(QML_IMPORT_VERSION 1.0)
 
+aux_source_directory(./ A)
+
+
 qt_add_executable(appzControl
-    main.cpp
-    ZButtonModelInfo.cpp
-    ZButtonModelInfo.h
-    ZTableModelInfo.cpp
-    ZTableModelInfo.h
-    ZTableHeaderMdelInfo.h
-    ZTableHeaderMdelInfo.cpp
+    ${A}
     ${Z_RESOURCES_TARGET}
 )
 
 qt_add_qml_module(appzControl
     URI zControl
     VERSION 1.0
-    QML_FILES Main.qml
-    QML_FILES ZButton.qml
-    QML_FILES ZRowButton.qml
-    QML_FILES ZColumnButton.qml
     RESOURCES demo.qrc
-    SOURCES  ZTableModelFinal.h ZTableModelFinal.cpp ZTwoDimension.h ZTwoDimension.cpp ZRectangle.h ZRectangle.cpp ZConfig.h ZConfig.cpp ZTableModel.h ZTableModel.cpp ZTableHeaderMdelInfo.cpp ZTableHeaderMdelInfo.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -56,8 +56,16 @@ target_link_libraries(appzControl
     PRIVATE Qt6::Quick
 )
 
+target_link_libraries(appzControl PRIVATE zControls PRIVATE Qt6::Gui PRIVATE Qt6::Qml PRIVATE Qt6::Quick)
+
 include(GNUInstallDirs)
 install(TARGETS appzControl
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+install(TARGETS zControls
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
