@@ -10,7 +10,7 @@ find_package(Qt6 REQUIRED COMPONENTS Qml Quick)
 # )
 
 aux_source_directory(. A)
-qt_add_library(zControls STATIC ${A})
+qt_add_library(zControls SHARED ${A})
 
 target_link_libraries(zControls PRIVATE
     Qt6::Qml
