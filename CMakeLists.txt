@@ -16,7 +16,7 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Gui Qml)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
-include_directories(ZControls)
+include_directories(ZControls inc inc/os)
 
 qt6_add_resources(Z_RESOURCES_TARGET demo.qrc)
 
@@ -72,3 +72,4 @@ install(TARGETS zControls
 )
 
 set_target_properties(appzControl PROPERTIES VS_GLOBAL_VcpkgEnabled true)
+set_target_properties(zControls PROPERTIES VS_GLOBAL_VcpkgEnabled true)

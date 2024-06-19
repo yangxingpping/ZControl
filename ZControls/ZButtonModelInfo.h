@@ -1,16 +1,16 @@
 
 #pragma once
-
+#include "os.h"
 #include <QVariant>
 
-class ZButtonModelInfo
+class ZCONTROLS_EXPORT ZButtonModelInfo
 {
 public:
 	enum class ClientRole
 	{
 		name,
 		iconUrl,
-        maskUrl,
+		maskUrl,
 		zoptVal,
 		optVal2,
 	};
@@ -20,5 +20,5 @@ public:
 
 	QString _name{ "name" };
 	QString _iconUrl{ "icon" };
-    QString _maskUrl{"mask"};
+	QString _maskUrl{ "mask" };
 };

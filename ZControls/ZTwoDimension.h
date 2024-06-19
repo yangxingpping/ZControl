@@ -1,5 +1,6 @@
 #pragma once
 #include "magic_enum.hpp"
+#include "os.h"
 #include <QAbstractListModel>
 #include <QLocale>
 #include <QtQml>
@@ -12,12 +13,12 @@ using std::unique_ptr;
 using std::vector;
 
 
-class ZTwoDimension : public QAbstractListModel
+class ZCONTROLS_EXPORT ZTwoDimension : public QAbstractListModel
 {
 	Q_OBJECT;
 	QML_ELEMENT;
 public:
-    explicit ZTwoDimension(QObject* parent = nullptr);
+	explicit ZTwoDimension(QObject* parent = nullptr);
 	virtual ~ZTwoDimension() override;
 	int rowCount(const QModelIndex& index = QModelIndex()) const override;
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
