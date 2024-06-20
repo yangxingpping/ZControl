@@ -1,2 +1,2 @@
-module ZControls
-plugin ZControlsplugin
+module Charts
+plugin chartsplugin

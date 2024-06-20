@@ -1,44 +1,55 @@
+# Copyright (C) 2022 The Qt Company Ltd.
+# SPDX-License-Identifier: BSD-3-Clause
 
-project(zControls LANGUAGES CXX)
+qt6_policy(SET QTP0001 NEW)
+qt6_add_qml_module(ZControlplugin
+    URI "ZControl"
+    PLUGIN_TARGET ZControlplugin
+    DEPENDENCIES QtQuick
+)
 
+target_sources(ZControlplugin PRIVATE
+    piechart.cpp piechart.h
+    pieslice.cpp pieslice.h
+)
 
-find_package(Qt6 REQUIRED COMPONENTS Qml Quick)
-
-# set_target_properties(zControls PROPERTIES
-#     WIN32_EXECUTABLE TRUE
-#     MACOSX_BUNDLE TRUE
-# )
-
-
-
-
-aux_source_directory(. A)
-qt_add_library(zControls SHARED ${A})
-
-target_link_libraries(zControls PRIVATE
+target_link_libraries(ZControlplugin PRIVATE
+    Qt6::Core
+    Qt6::Gui
     Qt6::Qml
     Qt6::Quick
 )
 
-include(GenerateExportHeader)
-generate_export_header(zControls EXPORT_FILE_NAME ${CMAKE_CURRENT_SOURCE_DIR}/../inc/os/${CMAKE_SYSTEM_NAME}/export_flags/${PROJECT_NAME}Export.h)
+if(QT6_IS_SHARED_LIBS_BUILD AND APPLE)
+    get_target_property(is_bundle ZControl-plugins MACOSX_BUNDLE)
+    if(is_bundle)
+        # The application's main.cpp adds an explicit QML import path to look for qml modules under
+        # a PlugIns subdirectory in a macOS bundle.
+        # Copy the qmldir and shared library qml plugin.
 
-# qt_add_qml_module(zControls
-#     URI zControls
-#     QML_FILES Controls/ZButton.qml
-#     NO_RESOURCE_TARGET_PATH
-# )
+        set(ZControl_dir "$<TARGET_FILE_DIR:ZControlplugin>")
+        set(chars_qmldir_file "${ZControl_dir}/qmldir")
+        set(app_dir "$<TARGET_FILE_DIR:ZControl-plugins>")
+        set(bundle_ZControl_dir "${app_dir}/../PlugIns/ZControl")
 
-qt_add_qml_module(${PROJECT_NAME}
-            PLUGIN_TARGET ${PLUGIN_TARGET_NAME}
-            OUTPUT_DIRECTORY ${FLUENTUI_QML_PLUGIN_DIRECTORY}
-            VERSION 1.0
-            URI "zControls"
-            #修改qmltypes文件名称。默认fluentuiplugin.qmltypes，使用默认名称有时候import FluentUI 1.0会爆红，所以修改成plugins.qmltypes
-            TYPEINFO "plugins.qmltypes"
-            SOURCES ${sources_files} ${FLUENTUI_VERSION_RC_PATH}
-            QML_FILES ${qml_files}
-            RESOURCES ${resource_files}
-            RESOURCE_PREFIX "/qt/qml"
-    )
+        add_custom_command(TARGET ZControlplugin POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${bundle_ZControl_dir}
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    $<TARGET_FILE:ZControlplugin> ${bundle_ZControl_dir}
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${chars_qmldir_file} ${bundle_ZControl_dir}
+            VERBATIM
+        )
+    endif()
+endif()
 
+set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLEDIR}/ZControl")
+install(TARGETS ZControlplugin
+    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir
+    DESTINATION "${INSTALL_EXAMPLEDIR}")
+
+set_target_properties(ZControlplugin PROPERTIES VS_GLOBAL_VcpkgEnabled true)

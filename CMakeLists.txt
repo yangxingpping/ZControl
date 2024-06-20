@@ -56,20 +56,20 @@ target_link_libraries(appzControl
     PRIVATE Qt6::Quick
 )
 
-target_link_libraries(appzControl PRIVATE zControls PRIVATE Qt6::Gui PRIVATE Qt6::Qml PRIVATE Qt6::Quick)
+target_link_libraries(appzControl  PRIVATE Qt6::Gui PRIVATE Qt6::Qml PRIVATE Qt6::Quick)
 
 include(GNUInstallDirs)
-install(TARGETS appzControl
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+# install(TARGETS appzControl
+#     BUNDLE DESTINATION .
+#     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+# )
 
-install(TARGETS zControls
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+# install(TARGETS ZControls
+#     BUNDLE DESTINATION .
+#     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+# )
 
 set_target_properties(appzControl PROPERTIES VS_GLOBAL_VcpkgEnabled true)
-set_target_properties(zControls PROPERTIES VS_GLOBAL_VcpkgEnabled true)
+
