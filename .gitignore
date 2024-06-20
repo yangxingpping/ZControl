@@ -5,3 +5,4 @@ CMakeLists.txt.user
 CMakeLists.txt.user.ae3b513
 CMakeLists.txt.user.ca1e595
 inc/os/Windows/export_flags/zControlsExport.h
+inc/os/Windows/export_flags/zControlExport.h

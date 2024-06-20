@@ -2,16 +2,29 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 qt6_policy(SET QTP0001 NEW)
+
+
+
 qt6_add_qml_module(ZControlplugin
     URI "ZControl"
     PLUGIN_TARGET ZControlplugin
     DEPENDENCIES QtQuick
 )
 
+add_definitions(-DBUILD_SHARED_LIBS -DzControls_EXPORTS)
+
+include(GenerateExportHeader)
+generate_export_header(ZControlplugin EXPORT_FILE_NAME ${CMAKE_CURRENT_SOURCE_DIR}/../inc/os/${CMAKE_SYSTEM_NAME}/export_flags/${PROJECT_NAME}Export.h)
+
+
 target_sources(ZControlplugin PRIVATE
     piechart.cpp piechart.h
     pieslice.cpp pieslice.h
+    ZTwoDimension.cpp ZTwoDimension.h
+    ZButtonModelInfo.cpp ZButtonModelInfo.h
 )
+
+
 
 target_link_libraries(ZControlplugin PRIVATE
     Qt6::Core
@@ -26,7 +39,6 @@ if(QT6_IS_SHARED_LIBS_BUILD AND APPLE)
         # The application's main.cpp adds an explicit QML import path to look for qml modules under
         # a PlugIns subdirectory in a macOS bundle.
         # Copy the qmldir and shared library qml plugin.
-
         set(ZControl_dir "$<TARGET_FILE_DIR:ZControlplugin>")
         set(chars_qmldir_file "${ZControl_dir}/qmldir")
         set(app_dir "$<TARGET_FILE_DIR:ZControl-plugins>")

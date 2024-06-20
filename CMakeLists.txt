@@ -54,9 +54,10 @@ set_target_properties(appzControl PROPERTIES
 
 target_link_libraries(appzControl
     PRIVATE Qt6::Quick
+    PRIVATE Qt6::Gui 
+    PRIVATE Qt6::Qml
+    INTERFACE ZControlplugin
 )
-
-target_link_libraries(appzControl  PRIVATE Qt6::Gui PRIVATE Qt6::Qml PRIVATE Qt6::Quick)
 
 include(GNUInstallDirs)
 # install(TARGETS appzControl
