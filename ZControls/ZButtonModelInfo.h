@@ -3,7 +3,7 @@
 #include "os.h"
 #include <QVariant>
 
-class ZCONTROLS_EXPORT ZButtonModelInfo
+class ZCONTROLPLUGIN_EXPORT ZButtonModelInfo
 {
 public:
 	enum class ClientRole

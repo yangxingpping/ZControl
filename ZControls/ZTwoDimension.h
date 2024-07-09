@@ -13,7 +13,7 @@ using std::unique_ptr;
 using std::vector;
 
 
-class ZCONTROLS_EXPORT ZTwoDimension : public QAbstractListModel
+class ZCONTROLPLUGIN_EXPORT ZTwoDimension : public QAbstractListModel
 {
 	Q_OBJECT;
 	QML_ELEMENT;
