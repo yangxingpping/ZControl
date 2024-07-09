@@ -39,7 +39,7 @@ include_directories(ZControls inc inc/os)
 
 qt6_add_resources(Z_RESOURCES_TARGET demo.qrc)
 
-add_subdirectory(widgetQML)
+#add_subdirectory(widgetQML)
 add_subdirectory(ZControls)
 add_subdirectory(demo2)
 

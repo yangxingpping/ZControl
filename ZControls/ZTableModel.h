@@ -3,7 +3,7 @@
 #include <qqml.h>
 #include <QAbstractTableModel>
 
-class ZCONTROLS_EXPORT ZTableModel : public QAbstractTableModel
+class ZCONTROLPLUGIN_EXPORT ZTableModel : public QAbstractTableModel
 {
 	Q_OBJECT
 		QML_ELEMENT
