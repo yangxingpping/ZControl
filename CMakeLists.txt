@@ -5,6 +5,23 @@ set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
 
 project(zControl VERSION 0.1 LANGUAGES CXX)
 
+IF(CMAKE_SYSTEM_NAME MATCHES "Windows")
+
+ELSEIF(CMAKE_SYSTEM_NAME MATCHES "Linux")
+
+ELSEIF(CMAKE_SYSTEM_NAME MATCHES "Android")
+include_directories(D:/vcpkg/installed/x64-android/include)
+if (CMAKE_BUILD_TYPE EQUAL "DEBUG")
+    message("debug mode")
+    link_directories(D:\\vcpkg/installed/x64-android/debug/lib)
+else()
+    link_directories(D:\\vcpkg/installed/x64-android/lib)
+endif (CMAKE_BUILD_TYPE EQUAL "DEBUG")
+
+ELSEIF(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+
+ENDIF(CMAKE_SYSTEM_NAME MATCHES "Windows")
+
 set(CMAKE_AUTOMOC ON) 
 set(CMAKE_AUTORCC ON) 
 set(CMAKE_AUTOUIC ON) 
@@ -13,6 +30,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_DEBUG_POSTFIX "d")
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Gui Qml)
+
+
 
 qt_standard_project_setup(REQUIRES 6.5)
 

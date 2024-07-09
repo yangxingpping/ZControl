@@ -1,6 +1,6 @@
 #pragma once
-#include "magic_enum.hpp"
 #include "os.h"
+#include "magic_enum.hpp"
 #include <QAbstractListModel>
 #include <QLocale>
 #include <QtQml>
